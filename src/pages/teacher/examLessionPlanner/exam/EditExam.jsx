@@ -12,21 +12,25 @@ const EditExam = ({ data, handleEditExam }) => {
 
     const handleEdit = (e) => {
         e.preventDefault();
-        handleEditExam(formData);  
+        handleEditExam(formData);
         setOpenModal(false);
     };
 
     return (
         <>
-            <button onClick={() => setOpenModal(true)} className="w-8 h-8 hover:bg-slate-700 transition-all duration-75 ease-in rounded-full flex items-center justify-center cursor-pointer">
-                <FaRegEdit className="font-bold text-xl text-blue-700" />
+            <button
+                onClick={() => setOpenModal(true)}
+                className="w-8 h-8 hover:bg-slate-700 transition-all duration-75 ease-in rounded-full flex items-center justify-center cursor-pointer"
+            >
+                <FaRegEdit className="text-xl text-blue-700" />
             </button>
 
-            <Modal show={openModal} onClose={() => setOpenModal(false)} popup>
+            <Modal show={openModal} onClose={() => setOpenModal(false)} popup size="md">
                 <ModalHeader>Edit Exam Details</ModalHeader>
+                
                 <ModalBody>
-                    <form onSubmit={handleEdit} className="space-y-4">
-
+                    <form onSubmit={handleEdit} className="grid grid-cols-2 gap-4">
+                        
                         <div>
                             <Label htmlFor="exam">Exam Name</Label>
                             <TextInput
@@ -35,6 +39,7 @@ const EditExam = ({ data, handleEditExam }) => {
                                 value={formData.exam}
                                 onChange={handleChange}
                                 required
+                                placeholder="Enter Exam Name"
                             />
                         </div>
 
@@ -46,6 +51,7 @@ const EditExam = ({ data, handleEditExam }) => {
                                 value={formData.subject}
                                 onChange={handleChange}
                                 required
+                                placeholder="Subject Name"
                             />
                         </div>
 
@@ -57,6 +63,7 @@ const EditExam = ({ data, handleEditExam }) => {
                                 value={formData.class}
                                 onChange={handleChange}
                                 required
+                                placeholder="Class Name"
                             />
                         </div>
 
@@ -68,6 +75,7 @@ const EditExam = ({ data, handleEditExam }) => {
                                 value={formData.topic}
                                 onChange={handleChange}
                                 required
+                                placeholder="Topic Covered"
                             />
                         </div>
 
@@ -95,9 +103,10 @@ const EditExam = ({ data, handleEditExam }) => {
                             />
                         </div>
 
-                        <div className="flex justify-end mt-4">
-                            <Button type="submit">Update Exam</Button>
+                        <div className="col-span-2 flex justify-end pt-4">
+                            <Button type="submit" color="blue">Update Exam</Button>
                         </div>
+
                     </form>
                 </ModalBody>
             </Modal>

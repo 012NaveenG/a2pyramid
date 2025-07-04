@@ -20,36 +20,41 @@ const AddLessonModal = ({ handleAddLesson }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            handleAddLesson(lesson);  // Parent ko new lesson bhej rahe hain
-            setOpenModal(false);
-            setLesson({
-                subject: "",
-                class: "",
-                topic: "",
-                date: "",
-                time: "",
-                status: "Pending"
-            });
-        } catch (error) {
-            console.error("Error Adding Lesson:", error);
+        if (!lesson.subject || !lesson.class || !lesson.topic || !lesson.date || !lesson.time) {
+            alert("Please fill all fields.");
+            return;
         }
+        handleAddLesson(lesson);
+        setOpenModal(false);
+        resetForm();
+    };
+
+    const resetForm = () => {
+        setLesson({
+            subject: "",
+            class: "",
+            topic: "",
+            date: "",
+            time: "",
+            status: "Pending"
+        });
     };
 
     return (
         <>
             <button
-                className="flex items-center gap-1 bg-green-500 text-white cursor-pointer px-3 py-1 rounded"
+                className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded transition"
                 onClick={() => setOpenModal(true)}
             >
                 <FaPlus /> New Lesson
             </button>
+
             <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
                 <ModalHeader />
                 <ModalBody>
                     <form onSubmit={handleSubmit}>
                         <div className="space-y-4">
-                            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Add Lesson</h3>
+                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Add New Lesson</h3>
 
                             <TextInput
                                 name="subject"
@@ -85,17 +90,15 @@ const AddLessonModal = ({ handleAddLesson }) => {
 
                             <TextInput
                                 name="time"
-                                placeholder="Time"
                                 type="time"
                                 value={lesson.time}
                                 onChange={handleChange}
                                 required
                             />
 
-                            <div className="w-full">
-                                <Button type="submit" className="cursor-pointer">Add Lesson</Button>
+                            <div className="w-full pt-2">
+                                <Button type="submit" className="w-full">Add Lesson</Button>
                             </div>
-
                         </div>
                     </form>
                 </ModalBody>

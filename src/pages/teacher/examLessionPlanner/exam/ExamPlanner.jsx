@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button, Pagination } from "flowbite-react";
-import { FaRegEdit } from "react-icons/fa";
+import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination } from "flowbite-react";
 import DeleteModal from "../../../../components/DeleteModal.jsx";
 import EditExam from "./EditExam.jsx";
 import AddExamModal from "./AddExamModal.jsx";
 
-const ExamPlanner = ({ exams, handleDelete, handleEditExam,handleAddExam }) => {
+const ExamPlanner = ({ exams, handleDelete, handleEditExam, handleAddExam }) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage = 5;
@@ -19,13 +18,15 @@ const ExamPlanner = ({ exams, handleDelete, handleEditExam,handleAddExam }) => {
     const onPageChange = (page) => setCurrentPage(page);
 
     return (
-        <div className="p-4 ">
-         <div className="flex items-center justify-between">
-               <h1 className="text-xl font-semibold mb-4 dark:text-white">Exam Planner</h1>
-               <AddExamModal handleAddExam={handleAddExam}/>
-         </div>
-            <div className="overflow-x-auto">
-                <Table>
+        <div className="p-4 mt-10">
+
+            <div className="flex items-center justify-between mb-4">
+                <h1 className="text-xl font-semibold dark:text-white">Exam Planner</h1>
+                <AddExamModal handleAddExam={handleAddExam} />
+            </div>
+
+            <div className="overflow-x-auto h-1/2 overflow-y-auto">
+                <Table striped hoverable>
                     <TableHead>
                         <TableRow>
                             <TableHeadCell>Exam Name</TableHeadCell>
@@ -37,9 +38,10 @@ const ExamPlanner = ({ exams, handleDelete, handleEditExam,handleAddExam }) => {
                             <TableHeadCell>Actions</TableHeadCell>
                         </TableRow>
                     </TableHead>
+
                     <TableBody>
-                        {currentExam.map((exam) => (
-                            <TableRow key={exam.id}>
+                        {currentExam.length > 0 ? currentExam.map((exam) => (
+                            <TableRow key={exam.id} className="bg-white dark:bg-slate-900">
                                 <TableCell>{exam.exam}</TableCell>
                                 <TableCell>{exam.subject}</TableCell>
                                 <TableCell>{exam.class}</TableCell>
@@ -53,19 +55,27 @@ const ExamPlanner = ({ exams, handleDelete, handleEditExam,handleAddExam }) => {
                                     </div>
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )) : (
+                            <TableRow>
+                                <TableCell colSpan="7" className="text-center text-gray-500 dark:text-gray-400">
+                                    No Exams Scheduled
+                                </TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                 </Table>
             </div>
 
-            <div className="flex justify-center py-5 float-end ">
-                <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={onPageChange}
-                    showIcons
-                />
-            </div>
+            {totalPages > 1 && (
+                <div className="flex justify-end py-4">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={onPageChange}
+                        showIcons
+                    />
+                </div>
+            )}
         </div>
     );
 };

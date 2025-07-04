@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'school_posts';
+const STORAGE_KEY = "school_posts";
 
 export async function fetchPosts() {
   const raw = localStorage.getItem(STORAGE_KEY);
@@ -16,9 +16,16 @@ export async function createPost(post) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
 }
 
+export async function deletePost(postId) {
+  const posts = await fetchPosts();
+  const updatedPosts = posts.filter((post) => post.id !== postId);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
+  return updatedPosts;
+}
+
 export async function addComment(postId, commentText) {
   const posts = await fetchPosts();
-  const updatedPosts = posts.map(post => {
+  const updatedPosts = posts.map((post) => {
     if (post.id === postId) {
       const newComment = {
         id: Date.now(),
@@ -35,9 +42,9 @@ export async function addComment(postId, commentText) {
 
 export async function likeComment(postId, commentId) {
   const posts = await fetchPosts();
-  const updatedPosts = posts.map(post => {
+  const updatedPosts = posts.map((post) => {
     if (post.id === postId) {
-      const updatedComments = post.comments.map(comment => {
+      const updatedComments = post.comments.map((comment) => {
         if (comment.id === commentId) {
           return { ...comment, likes: comment.likes + 1 };
         }

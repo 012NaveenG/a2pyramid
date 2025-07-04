@@ -4,7 +4,14 @@ import { FaRegEdit } from "react-icons/fa";
 
 const EditLesson = ({ data, handleEditLesson }) => {
     const [openModal, setOpenModal] = useState(false);
-    const [formData, setFormData] = useState(data);
+    const [formData, setFormData] = useState({
+        subject: data.subject || "",
+        class: data.class || "",
+        topic: data.topic || "",
+        date: data.date || "",
+        time: data.time || "",
+        status: data.status || "Pending",
+    });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,9 +27,9 @@ const EditLesson = ({ data, handleEditLesson }) => {
         <>
             <button
                 onClick={() => setOpenModal(true)}
-                className="w-8 h-8 hover:bg-slate-700 transition-all duration-75 ease-in rounded-full flex items-center justify-center cursor-pointer"
+                className="w-8 h-8 hover:bg-slate-700 transition rounded-full flex items-center justify-center cursor-pointer"
             >
-                <FaRegEdit className="font-bold text-xl text-blue-700" />
+                <FaRegEdit className="text-xl text-blue-700" />
             </button>
 
             <Modal show={openModal} onClose={() => setOpenModal(false)} popup>
@@ -37,6 +44,7 @@ const EditLesson = ({ data, handleEditLesson }) => {
                                 name="subject"
                                 value={formData.subject}
                                 onChange={handleChange}
+                                placeholder="Enter Subject"
                                 required
                             />
                         </div>
@@ -48,6 +56,7 @@ const EditLesson = ({ data, handleEditLesson }) => {
                                 name="class"
                                 value={formData.class}
                                 onChange={handleChange}
+                                placeholder="Enter Class"
                                 required
                             />
                         </div>
@@ -59,6 +68,7 @@ const EditLesson = ({ data, handleEditLesson }) => {
                                 name="topic"
                                 value={formData.topic}
                                 onChange={handleChange}
+                                placeholder="Enter Topic"
                                 required
                             />
                         </div>
@@ -87,10 +97,8 @@ const EditLesson = ({ data, handleEditLesson }) => {
                             />
                         </div>
 
-                        <div >
-                            <div className="mb-2 block">
-                                <Label htmlFor="status">Select your country</Label>
-                            </div>
+                        <div>
+                            <Label htmlFor="status">Status</Label>
                             <Select
                                 id="status"
                                 name="status"
@@ -103,7 +111,7 @@ const EditLesson = ({ data, handleEditLesson }) => {
                             </Select>
                         </div>
 
-                        <div className="flex justify-end mt-4">
+                        <div className="flex justify-end pt-2">
                             <Button type="submit">Update Lesson</Button>
                         </div>
                     </form>

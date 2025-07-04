@@ -1,4 +1,4 @@
-import { Button, Modal, ModalBody, ModalHeader, Textarea, TextInput } from "flowbite-react";
+import { Button, Modal, ModalBody, ModalHeader, TextInput, Label } from "flowbite-react";
 import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 
@@ -18,10 +18,7 @@ const AddExamModal = ({ handleAddExam }) => {
         setExam({ ...exam, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        handleAddExam(exam);
-        setOpenModal(false);
+    const resetForm = () => {
         setExam({
             exam: "",
             subject: "",
@@ -30,6 +27,13 @@ const AddExamModal = ({ handleAddExam }) => {
             date: "",
             time: ""
         });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleAddExam(exam);
+        setOpenModal(false);
+        resetForm();
     };
 
     return (
@@ -43,58 +47,85 @@ const AddExamModal = ({ handleAddExam }) => {
 
             <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
                 <ModalHeader>Add New Exam</ModalHeader>
+
                 <ModalBody>
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
 
-                        <TextInput
-                            name="exam"
-                            placeholder="Exam Name"
-                            value={exam.exam}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div>
+                            <Label htmlFor="exam">Exam Name</Label>
+                            <TextInput
+                                id="exam"
+                                name="exam"
+                                placeholder="Exam Name"
+                                value={exam.exam}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                        <TextInput
-                            name="subject"
-                            placeholder="Subject"
-                            value={exam.subject}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div>
+                            <Label htmlFor="subject">Subject</Label>
+                            <TextInput
+                                id="subject"
+                                name="subject"
+                                placeholder="Subject"
+                                value={exam.subject}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                        <TextInput
-                            name="class"
-                            placeholder="Class"
-                            value={exam.class}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div>
+                            <Label htmlFor="class">Class</Label>
+                            <TextInput
+                                id="class"
+                                name="class"
+                                placeholder="Class"
+                                value={exam.class}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                        <TextInput
-                            name="topic"
-                            placeholder="Topic"
-                            value={exam.topic}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div>
+                            <Label htmlFor="topic">Topic</Label>
+                            <TextInput
+                                id="topic"
+                                name="topic"
+                                placeholder="Topic Covered"
+                                value={exam.topic}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                        <TextInput
-                            name="date"
-                            type="date"
-                            value={exam.date}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div>
+                            <Label htmlFor="date">Date</Label>
+                            <TextInput
+                                id="date"
+                                name="date"
+                                type="date"
+                                value={exam.date}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                        <TextInput
-                            name="time"
-                            type="time"
-                            value={exam.time}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div>
+                            <Label htmlFor="time">Time</Label>
+                            <TextInput
+                                id="time"
+                                name="time"
+                                type="time"
+                                value={exam.time}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                        <Button type="submit" className="w-full">Add Exam</Button>
+                        <div className="col-span-2 flex justify-end pt-4">
+                            <Button type="submit" color="blue">Add Exam</Button>
+                        </div>
                     </form>
                 </ModalBody>
             </Modal>

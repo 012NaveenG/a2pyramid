@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button, Pagination } from "flowbite-react";
+import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination } from "flowbite-react";
 import { FaRegEdit } from "react-icons/fa";
 import DeleteModal from "../../../../components/DeleteModal";
 import EditLesson from "./EditLesson";
 import AddLessonModal from "./AddLessonModal";
 
-const LessionPlanner = ({ lessons, handleDelete, handleEditLesson,handleAddLesson }) => {
+const LessionPlanner = ({ lessons, handleDelete, handleEditLesson, handleAddLesson }) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage = 5;
@@ -18,14 +18,17 @@ const LessionPlanner = ({ lessons, handleDelete, handleEditLesson,handleAddLesso
 
     const onPageChange = (page) => setCurrentPage(page);
 
-
     return (
-        <div className="p-4 mt-5">
-            <div className="flex items-center justify-between">
-                <h1 className="text-xl font-semibold mb-4 dark:text-white">Lesson Planner</h1>
+        <div className="sm:p-4 mt-5">
+            
+            {/* Header */}
+            <div className="flex items-center justify-between mb-4">
+                <h1 className="text-xl font-semibold dark:text-white">Lesson Planner</h1>
                 <AddLessonModal handleAddLesson={handleAddLesson} />
             </div>
-            <div className="overflow-x-auto mt-2">
+
+            {/* Table */}
+            <div className="overflow-x-auto">
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -38,16 +41,21 @@ const LessionPlanner = ({ lessons, handleDelete, handleEditLesson,handleAddLesso
                             <TableHeadCell>Actions</TableHeadCell>
                         </TableRow>
                     </TableHead>
+
                     <TableBody>
                         {currentLessons.map((lesson) => (
-                            <TableRow key={lesson.id}>
+                            <TableRow key={lesson.id} className="bg-white dark:bg-slate-900">
                                 <TableCell>{lesson.subject}</TableCell>
                                 <TableCell>{lesson.class}</TableCell>
                                 <TableCell>{lesson.topic}</TableCell>
                                 <TableCell>{lesson.date}</TableCell>
                                 <TableCell>{lesson.time}</TableCell>
                                 <TableCell>
-                                    <span className={`px-2 py-1 rounded text-xs font-semibold ${lesson.status === 'Completed' ? 'bg-green-200 text-green-800' : 'bg-yellow-200 text-yellow-800'}`}>
+                                    <span className={`px-2 py-1 rounded text-xs font-semibold ${
+                                        lesson.status === 'Completed' 
+                                            ? 'bg-green-200 text-green-700' 
+                                            : 'bg-yellow-200 text-yellow-700'
+                                    }`}>
                                         {lesson.status}
                                     </span>
                                 </TableCell>
@@ -55,7 +63,6 @@ const LessionPlanner = ({ lessons, handleDelete, handleEditLesson,handleAddLesso
                                     <div className="flex items-center gap-2">
                                         <EditLesson data={lesson} handleEditLesson={handleEditLesson} />
                                         <DeleteModal id={lesson.id} handleDelete={handleDelete} />
-
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -64,9 +71,16 @@ const LessionPlanner = ({ lessons, handleDelete, handleEditLesson,handleAddLesso
                 </Table>
             </div>
 
-            <div className="flex justify-center mt-4 float-end">
-                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} showIcons />
+            {/* Pagination */}
+            <div className="flex justify-end mt-4">
+                <Pagination 
+                    currentPage={currentPage} 
+                    totalPages={totalPages} 
+                    onPageChange={onPageChange} 
+                    showIcons 
+                />
             </div>
+
         </div>
     );
 };

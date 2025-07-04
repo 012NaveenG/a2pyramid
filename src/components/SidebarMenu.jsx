@@ -10,7 +10,7 @@ import {
 import { MdDashboard } from "react-icons/md";
 import { FiMessageSquare } from "react-icons/fi";
 import { RiCalendarScheduleFill } from "react-icons/ri";
-import { FaBookOpen,FaChalkboardTeacher } from "react-icons/fa";
+import { FaBookOpen, FaChalkboardTeacher } from "react-icons/fa";
 import { FaBus } from "react-icons/fa";
 import { BsFillFilePostFill } from "react-icons/bs";
 import { ImProfile } from "react-icons/im";
@@ -30,7 +30,7 @@ const links = [
     { path: "/admin/bus-tracking", label: "Bus Live Tracking", roles: ["admin"], icon: FaBus },
     { path: "/admin/my-posts", label: "My Posts", roles: ["admin"], icon: BsFillFilePostFill },
 
-    
+
     { path: "/teacher", label: "Dashboard", roles: ["teacher"], icon: MdDashboard },
     { path: "/teacher/my-profile", label: "My Profile", roles: ["teacher"], icon: ImProfile },
     { path: "/teacher/my-classes", label: "My Classes", roles: ["teacher"], icon: FaChalkboardTeacher },
@@ -48,7 +48,7 @@ const links = [
     { path: "/student/bus-tracking", label: "Bus Live Tracking", roles: ["student"], icon: FaBus }
 ];
 
-const SidebarMenu = () => {
+const SidebarMenu = ({ toggleSidebar }) => {
     const navigate = useNavigate();
     const user = getSession();
 
@@ -78,6 +78,7 @@ const SidebarMenu = () => {
                 <SidebarItemGroup>
                     {links.filter(link => link.roles.includes(user?.role)).map((link, index) => (
                         <NavLink
+                            onClick={toggleSidebar}
                             to={link.path}
                             key={index}
                             end={link.path === "/admin" || link.path === "/teacher" || link.path === "/student"} // sirf dashboard link pe end prop lagega
