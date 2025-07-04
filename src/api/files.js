@@ -1,13 +1,19 @@
-const STORAGE_KEY = 'school_files';
+const STORAGE_KEY = "school_files";
 
 export async function fetchFiles() {
   const raw = localStorage.getItem(STORAGE_KEY);
   return raw ? JSON.parse(raw) : [];
 }
 
+export async function deleteFile(id) {
+  const files = await fetchFiles();
+  const updatedFiles = files.filter((file) => file.id !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedFiles));
+}
+
 export async function uploadFile(formData) {
   const files = await fetchFiles();
-  const file = formData.get('file');
+  const file = formData.get("file");
   const blobUrl = URL.createObjectURL(file);
   const newFile = {
     id: Date.now(),

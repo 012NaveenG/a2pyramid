@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import ExamPlanner from './ExamPlanner.jsx';
-import LessionPlanner from './LessionPlanner.jsx';
+import ExamPlanner from '../examLessionPlanner/exam/ExamPlanner.jsx';
+import LessionPlanner from '../examLessionPlanner/lesson/LessionPlanner.jsx';
 
 const Planner = () => {
     const [lessons, setLessons] = useState([
@@ -136,6 +136,40 @@ const Planner = () => {
         }
     ]);
 
+    const handleAddExam = (data) => {
+        try {
+            if (!data.exam || !data.subject || !data.class || !data.topic || !data.date || !data.time) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            const newExam = {
+                id: Date.now(),   // Unique ID
+                ...data
+            };
+
+            setExams((prev) => [newExam, ...prev]);
+
+            console.log("New Exam Added:", newExam);
+        } catch (error) {
+            console.error("Error while adding exam:", error);
+            alert("Something went wrong while adding the exam!");
+        }
+    };
+
+    const handleAddLesson = (data) => {
+        if (!data.subject || !data.class || !data.topic || !data.date || !data.time) {
+            alert("Please fill all fields.");
+            return;
+        }
+
+        const newLesson = {
+            id: Date.now(),
+            ...data
+        };
+
+        setLessons((prev) => [newLesson, ...prev]);
+    };
 
 
     const handleDeleteExam = (id) => {
@@ -159,14 +193,14 @@ const Planner = () => {
         <div className='p-4 mt-5'>
 
             {/* Lesson Plan Section */}
-            <div className="mb-8">
+            <div className="my-8">
 
-                <LessionPlanner lessons={lessons} handleEditLesson={handleEditLesson} handleDelete={handleDeleteLesson} />
+                <LessionPlanner lessons={lessons} handleEditLesson={handleEditLesson} handleDelete={handleDeleteLesson} handleAddLesson={handleAddLesson} />
             </div>
 
             {/* Exam Plan Section */}
-            <div>
-                <ExamPlanner exams={exams} handleDelete={handleDeleteExam} handleEditExam={handleEditExam} />
+            <div className='my-8'>
+                <ExamPlanner exams={exams} handleDelete={handleDeleteExam} handleEditExam={handleEditExam} handleAddExam={handleAddExam} />
             </div>
         </div>
     );

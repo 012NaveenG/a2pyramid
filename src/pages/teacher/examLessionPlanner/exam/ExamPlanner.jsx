@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button, Pagination } from "flowbite-react";
 import { FaRegEdit } from "react-icons/fa";
-import DeleteModal from "../../../components/DeleteModal";
-import EditExam from "./EditExam";
+import DeleteModal from "../../../../components/DeleteModal.jsx";
+import EditExam from "./EditExam.jsx";
+import AddExamModal from "./AddExamModal.jsx";
 
-const ExamPlanner = ({ exams, handleDelete, handleEditExam }) => {
+const ExamPlanner = ({ exams, handleDelete, handleEditExam,handleAddExam }) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage = 5;
@@ -18,9 +19,11 @@ const ExamPlanner = ({ exams, handleDelete, handleEditExam }) => {
     const onPageChange = (page) => setCurrentPage(page);
 
     return (
-        <div className="p-4">
-            <h1 className="text-xl font-semibold mb-4 dark:text-white">Exam Planner</h1>
-
+        <div className="p-4 ">
+         <div className="flex items-center justify-between">
+               <h1 className="text-xl font-semibold mb-4 dark:text-white">Exam Planner</h1>
+               <AddExamModal handleAddExam={handleAddExam}/>
+         </div>
             <div className="overflow-x-auto">
                 <Table>
                     <TableHead>

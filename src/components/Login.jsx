@@ -68,7 +68,6 @@ export default function Login() {
     if (newUser.role === "student") {
       navigate("/student")
     }
-    navigate("/dashboard");
   };
 
   return (

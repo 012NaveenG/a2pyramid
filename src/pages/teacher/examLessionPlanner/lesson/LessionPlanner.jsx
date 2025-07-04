@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Button, Pagination } from "flowbite-react";
 import { FaRegEdit } from "react-icons/fa";
-import DeleteModal from "../../../components/DeleteModal";
+import DeleteModal from "../../../../components/DeleteModal";
 import EditLesson from "./EditLesson";
+import AddLessonModal from "./AddLessonModal";
 
-const LessionPlanner = ({ lessons, handleDelete, handleEditLesson }) => {
-   
+const LessionPlanner = ({ lessons, handleDelete, handleEditLesson,handleAddLesson }) => {
+
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage = 5;
 
@@ -20,8 +21,10 @@ const LessionPlanner = ({ lessons, handleDelete, handleEditLesson }) => {
 
     return (
         <div className="p-4 mt-5">
-            <h1 className="text-xl font-semibold mb-4 dark:text-white">Lesson Planner</h1>
-
+            <div className="flex items-center justify-between">
+                <h1 className="text-xl font-semibold mb-4 dark:text-white">Lesson Planner</h1>
+                <AddLessonModal handleAddLesson={handleAddLesson} />
+            </div>
             <div className="overflow-x-auto mt-2">
                 <Table>
                     <TableHead>
