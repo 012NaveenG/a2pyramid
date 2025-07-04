@@ -4,9 +4,9 @@ import Navbar from "../components/Navbar.jsx"
 
 const Layout = () => {
     return (
-        <div className="flex dark:bg-slate-800 h-screen w-screen gap-2 p-2 overflow-y-auto">
+        <div className="flex dark:bg-slate-800 h-screen w-screen gap-2 p-2 ">
             <SidebarMenu />
-            <div className="w-full">
+            <div className="w-full h-full overflow-y-auto">
                 <Navbar />
                 <Outlet />
             </div>

@@ -17,7 +17,7 @@ const BusTracking = () => {
   );
 
   return (
-    <div className="p-5">
+    <div className="p-5 mt-10">
       <h1 className="text-2xl font-bold dark:text-white mb-4">Bus Live Tracking</h1>
 
       <div className="flex items-center mb-4 gap-2">

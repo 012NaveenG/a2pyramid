@@ -21,6 +21,7 @@ import TeacherDashboard from "./pages/teacher/dashboard/Dashboard.jsx"
 import MyProfile from "./pages/teacher/myProfile/MyProfile.jsx";
 import TeacherMyClasses from "./pages/teacher/myclasses/MyClasses.jsx"
 import TeacherClassSchedule from "./pages/teacher/classScheule/ClassSchedule.jsx"
+import Planner from "./pages/teacher/examLessionPlanner/Planner.jsx";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,22 @@ const router = createBrowserRouter([
       {
         path: "/teacher/class-timetable",
         element: <TeacherClassSchedule />
+      },
+      {
+        path: "/teacher/exams-and-lesson-planner",
+        element: <Planner/>
+      },
+      {
+        path: "/teacher/messages",
+        element: <Messages/>
+      },
+      {
+        path: "/teacher/library",
+        element: <LibraryPage/>
+      },
+      {
+        path: "/teacher/bus-tracking",
+        element: <BusTracking/>
       },
     ]
   }

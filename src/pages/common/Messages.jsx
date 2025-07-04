@@ -53,7 +53,7 @@ const Messages = () => {
     };
 
     return (
-        <div className="h-screen p-5">
+        <div className="h-screen p-5 mt-10">
             <h1 className="font-bold dark:text-white text-2xl">Messages</h1>
             <div className="flex h-3/4">
 

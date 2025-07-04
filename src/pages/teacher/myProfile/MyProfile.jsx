@@ -23,7 +23,7 @@ const MyProfile = () => {
     };
 
     return (
-        <div className="p-5 mx-auto">
+        <div className="p-5 mt-10 mx-auto">
             <h1 className="text-2xl font-bold mb-4 dark:text-white">My Profile</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 

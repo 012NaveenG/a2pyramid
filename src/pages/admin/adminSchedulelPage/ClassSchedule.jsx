@@ -1,5 +1,5 @@
 import React from 'react'
-import Schedule from '../..//common/Schedules.jsx'
+import Schedule from './Schedules.jsx'
 import { getSession } from '../../../api/users.js'
 
 const ClassSchedule = () => {

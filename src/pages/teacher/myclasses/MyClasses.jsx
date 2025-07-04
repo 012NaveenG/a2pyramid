@@ -90,7 +90,7 @@ const MyClasses = () => {
     }
 
     return (
-        <div className='p-4 mt-5 h-full'>
+        <div className='p-4 mt-10 h-full'>
             <h1 className="font-semibold text-xl dark:text-white text-slate-800 bg-slate-900/50 py-4 px-2 rounded-tr-lg rounded-tl-lg">My Classes</h1>
 
             <div className="overflow-x-auto mt-2 h-3/4">

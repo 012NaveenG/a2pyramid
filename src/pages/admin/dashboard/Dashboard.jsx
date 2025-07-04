@@ -58,7 +58,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="py-10">
+    <div className="py-10 mt-10">
       <div className="grid grid-cols-4 gap-2">
 
         {gridCards.map((item, idx) => (

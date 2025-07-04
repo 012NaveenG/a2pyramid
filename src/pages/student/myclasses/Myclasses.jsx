@@ -32,7 +32,7 @@ const MyClasses = () => {
     const className = "Class 5A"; // Jo student ka class hai, dynamic bhi le sakte ho
 
     return (
-        <div className="p-5">
+        <div className="p-5 mt-10">
             <h1 className="text-2xl font-bold dark:text-white mb-4">
                 {className} - Schedule
             </h1>

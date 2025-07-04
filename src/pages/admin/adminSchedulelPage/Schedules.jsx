@@ -58,7 +58,7 @@ const Schedule = ({ role, userClass, teacherName }) => {
   }
 
   return (
-    <div className="p-5 bg-white dark:bg-slate-900 rounded-lg shadow h-full">
+    <div className="p-5 mt-10 bg-white dark:bg-slate-900 rounded-lg shadow h-full">
       <h1 className="text-2xl font-semibold mb-4 dark:text-white">Schedule</h1>
 
       {role === "admin" && (

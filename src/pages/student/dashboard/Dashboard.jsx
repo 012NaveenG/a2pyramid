@@ -16,7 +16,7 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 mt-10">
             <div className="flex items-center justify-center w-full gap-2">
                 <div className="w-3/4 flex items-center gap-2 px-5 bg-slate-100 shadow  dark:bg-slate-900/50 rounded-xl">
                     <AttendanceChart />

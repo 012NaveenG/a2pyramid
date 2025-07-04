@@ -13,7 +13,7 @@ const FeeStatus = () => {
     const academicYear = `${currentYear}-${currentYear + 1}`;
 
     return (
-        <div className="p-5">
+        <div className="p-5 mt-10">
             <h1 className="text-2xl font-bold dark:text-white mb-4">Fee Status - Academic Year {academicYear} </h1>
 
             <div className="overflow-x-auto">

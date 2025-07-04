@@ -53,7 +53,7 @@ const Schedule = () => {
     ]);
 
     return (
-        <div className='p-4 mt-5'>
+        <div className='p-4 mt-10'>
             <h1 className="text-2xl font-bold dark:text-white mb-4">Weekly Class Timetable</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

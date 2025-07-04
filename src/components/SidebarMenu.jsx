@@ -35,7 +35,7 @@ const links = [
     { path: "/teacher/my-profile", label: "My Profile", roles: ["teacher"], icon: ImProfile },
     { path: "/teacher/my-classes", label: "My Classes", roles: ["teacher"], icon: FaChalkboardTeacher },
     { path: "/teacher/class-timetable", label: "Schedule", roles: ["teacher"], icon: RiCalendarScheduleFill },
-    { path: "/teacher/exams-and-lesson-planner", label: "Exams & Lesson Planner", roles: ["teacher"], icon: PiExamBold },
+    { path: "/teacher/exams-and-lesson-planner", label: "Exam & Lesson Planner", roles: ["teacher"], icon: PiExamBold },
     { path: "/teacher/messages", label: "Messages", roles: ["teacher"], icon: FiMessageSquare },
     { path: "/teacher/library", label: "Digital Library", roles: ["teacher"], icon: FaBookOpen },
     { path: "/teacher/bus-tracking", label: "Bus Live Tracking", roles: ["teacher"], icon: FaBus },
