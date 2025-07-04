@@ -6,10 +6,18 @@ export default function Login() {
   const [isSignup, setIsSignup] = useState(false);
   const [form, setForm] = useState({ username: "", password: "", role: "student" });
   const navigate = useNavigate();
-
+  const user = getSession()
   useEffect(() => {
-    if (getSession()) {
-      navigate("/dashboard");
+    if (user) {
+      if (user.role === "admin") {
+        navigate("/admin");
+      }
+      if (user.role === "teacher") {
+        navigate("/teacher")
+      }
+      if (user.role === "student") {
+        navigate("/student")
+      }
     }
   }, [navigate]);
 
@@ -24,7 +32,15 @@ export default function Login() {
 
     if (user) {
       setSession(user);
-      navigate("/dashboard");
+      if (user.role === "admin") {
+        navigate("/admin");
+      }
+      if (user.role === "teacher") {
+        navigate("/teacher")
+      }
+      if (user.role === "student") {
+        navigate("/student")
+      }
     } else {
       alert("Invalid credentials");
     }
@@ -39,10 +55,19 @@ export default function Login() {
     const newUser = {
       ...form,
       id: Date.now(),
-      parentId: null 
+      parentId: null
     };
     createUser(newUser);
     setSession(newUser);
+    if (newUser.role === "admin") {
+      navigate("/admin");
+    }
+    if (newUser.role === "teacher") {
+      navigate("/teacher")
+    }
+    if (newUser.role === "student") {
+      navigate("/student")
+    }
     navigate("/dashboard");
   };
 
