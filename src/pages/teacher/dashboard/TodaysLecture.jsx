@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { IoDocumentTextOutline } from "react-icons/io5";
-import EditClassModal from "../../admin/classManagement/EditClassModal";
-import DeleteModal from "../../../components/DeleteModal";
+import EditClassModal from "../../admin/classManagement/EditClassModal.jsx";
+import DeleteModal from "../../../components/DeleteModal.jsx";
 
 const TodaysLecture = ({ prop }) => {
   const { myclasses, setMyclasses } = prop;

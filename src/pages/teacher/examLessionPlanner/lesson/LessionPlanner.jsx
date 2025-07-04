@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination } from "flowbite-react";
-import { FaRegEdit } from "react-icons/fa";
-import DeleteModal from "../../../../components/DeleteModal";
-import EditLesson from "./EditLesson";
-import AddLessonModal from "./AddLessonModal";
+
+import DeleteModal from "../../../../components/DeleteModal.jsx";
+import EditLesson from "./EditLesson.jsx";
+import AddLessonModal from "./AddLessonModal.jsx";
 
 const LessionPlanner = ({ lessons, handleDelete, handleEditLesson, handleAddLesson }) => {
 

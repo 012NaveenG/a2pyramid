@@ -18,7 +18,7 @@ import { PiExamBold } from "react-icons/pi";
 import { MdOutlineFeed } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getSession, clearSession } from "../api/users";
+import { getSession, clearSession } from "../api/users.js";
 
 
 const links = [
